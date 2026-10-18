@@ -1,0 +1,77 @@
+.floating-particles {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-particle {
+  position: absolute;
+  bottom: -8%;
+  left: var(--x);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: #fac5d4;
+  box-shadow: 0 0 12px 2px rgba(226, 90, 130, 0.7);
+  opacity: 0;
+  animation: particleDrift var(--duration) linear var(--delay) infinite;
+  animation-play-state: paused;
+}
+
+.floating-petal {
+  position: absolute;
+  top: -12%;
+  left: var(--x);
+  width: var(--size);
+  height: calc(var(--size) * 1.35);
+  border-radius: 70% 5% 70% 12%;
+  background: linear-gradient(130deg, #ef7b9d 0%, #a31e45 67%, #571528 100%);
+  box-shadow: 0 0 10px rgba(211, 58, 102, 0.22);
+  opacity: 0;
+  animation: petalFall var(--duration) ease-in-out var(--delay) infinite;
+  animation-play-state: paused;
+}
+
+.floating-particles.is-active .floating-particle,
+.floating-particles.is-active .floating-petal {
+  animation-play-state: running;
+}
+
+.floating-particles--opening {
+  opacity: 0;
+  transition: opacity 450ms ease;
+}
+
+.floating-particles--opening.is-active {
+  opacity: 1;
+}
+
+.floating-particles--opening .floating-petal {
+  animation-duration: calc(var(--duration) * 0.65);
+}
+
+.floating-particles--final .floating-petal {
+  opacity: 0;
+}
+
+@keyframes particleDrift {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  12% { opacity: 0.75; }
+  80% { opacity: 0.42; }
+  100% { transform: translate3d(22px, -115vh, 0); opacity: 0; }
+}
+
+@keyframes petalFall {
+  0% { transform: translate3d(-16px, -10vh, 0) rotate(0deg); opacity: 0; }
+  12% { opacity: 0.45; }
+  84% { opacity: 0.37; }
+  100% { transform: translate3d(70px, 120vh, 0) rotate(410deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-particles {
+    display: none;
+  }
+}
