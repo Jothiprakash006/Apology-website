@@ -1,0 +1,220 @@
+.music-player {
+  position: fixed;
+  z-index: 40;
+  right: 26px;
+  bottom: 24px;
+  width: 318px;
+  padding: 12px 15px 11px;
+  border: 1px solid rgba(242, 183, 203, 0.29);
+  border-radius: 7px;
+  background: rgba(23, 15, 23, 0.9);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.39), 0 0 35px rgba(137, 30, 65, 0.11);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(17px);
+  transition: opacity 600ms ease, transform 600ms ease;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.music-player.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.music-player-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.music-symbol {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(227, 111, 150, 0.3);
+  border-radius: 50%;
+  background: rgba(118, 31, 64, 0.24);
+  color: #efa4be;
+}
+
+.music-meta {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.music-meta span {
+  color: #b78b9b;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.music-meta strong {
+  overflow: hidden;
+  color: #f7ecf0;
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.music-upload-control {
+  display: grid;
+  width: 29px;
+  height: 32px;
+  flex: none;
+  place-items: center;
+  border-radius: 3px;
+  color: #d9b1c0;
+  transition: color 200ms ease, background 200ms ease;
+}
+
+.music-upload-control:hover {
+  background: rgba(197, 40, 81, 0.17);
+  color: #fff;
+}
+
+.music-play-button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #c52851;
+  box-shadow: 0 0 16px rgba(197, 40, 81, 0.32);
+  color: #fff;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.music-play-button:not(:disabled):hover {
+  background: #d43a62;
+  transform: scale(1.07);
+}
+
+.music-play-button:disabled {
+  opacity: 0.48;
+}
+
+.music-play-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.music-progress-row,
+.music-volume-row {
+  display: flex;
+  align-items: center;
+}
+
+.music-progress-row {
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.music-progress-row time {
+  width: 27px;
+  flex: none;
+  color: #a99aa1;
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+.music-progress-row time:last-child {
+  text-align: right;
+}
+
+.music-player input[type="range"] {
+  height: 3px;
+  margin: 0;
+  appearance: none;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #e16c91 var(--range-fill), rgba(242, 183, 203, 0.23) var(--range-fill));
+  cursor: pointer;
+}
+
+.music-player input[type="range"]::-webkit-slider-thumb {
+  width: 9px;
+  height: 9px;
+  appearance: none;
+  border: 0;
+  border-radius: 50%;
+  background: #f3c0d1;
+  box-shadow: 0 0 8px rgba(232, 107, 149, 0.5);
+}
+
+.music-player input[type="range"]::-moz-range-thumb {
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-radius: 50%;
+  background: #f3c0d1;
+}
+
+.music-player input[type="range"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.music-progress-row input {
+  min-width: 0;
+  flex: 1;
+}
+
+.music-volume-row {
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.music-volume-row button {
+  display: grid;
+  width: 19px;
+  height: 18px;
+  flex: none;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #c9a0b0;
+}
+
+.music-volume-row button:hover {
+  color: #fff;
+}
+
+.music-volume-row input {
+  width: 62px;
+  flex: none;
+}
+
+.music-volume-row span {
+  margin-left: auto;
+  color: #987f8a;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.music-error {
+  margin: 9px 0 0;
+  color: #f2b7cb;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+@media (max-width: 760px) {
+  .music-player {
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    width: min(370px, calc(100% - 24px));
+  }
+}

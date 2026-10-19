@@ -1,0 +1,179 @@
+.opening-screen {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.opening-image {
+  position: absolute;
+  z-index: -1;
+  inset: -2%;
+  background-image: linear-gradient(90deg, rgba(8, 8, 12, 0.79) 0%, rgba(8, 8, 12, 0.39) 42%, rgba(8, 8, 12, 0.04) 81%), linear-gradient(0deg, rgba(8, 8, 12, 0.44), transparent 30%), url("/images/cinematic-rose.jpg");
+  background-position: center;
+  background-size: cover;
+  animation: imageBreathe 20s ease-in-out infinite alternate;
+}
+
+.opening-screen::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(circle at 77% 45%, transparent 14%, rgba(8, 8, 12, 0.12) 55%, rgba(8, 8, 12, 0.4) 100%);
+  content: "";
+  pointer-events: none;
+}
+
+.opening-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 28px;
+  padding-bottom: 32px;
+}
+
+.opening-heart {
+  width: fit-content;
+  margin-bottom: 24px;
+  color: #d33b63;
+  filter: drop-shadow(0 0 18px rgba(218, 53, 103, 0.83));
+  animation: openingRise 850ms 120ms both, heartShimmer 4.5s 1s ease-in-out infinite;
+}
+
+.opening-content h1 {
+  max-width: 850px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(85px, 8.3vw, 130px);
+  font-weight: 400;
+  letter-spacing: -0.064em;
+  line-height: 0.9;
+  animation: openingRise 1s 300ms both;
+}
+
+.opening-content h1 em {
+  color: #f2b7cb;
+  font-weight: 400;
+}
+
+.heading-emoji {
+  display: inline-block;
+  margin-left: 0.04em;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.25em;
+  font-style: normal;
+  letter-spacing: 0;
+  vertical-align: 0.32em;
+  filter: drop-shadow(0 0 14px rgba(218, 53, 103, 0.55));
+}
+
+.opening-quote {
+  max-width: 610px;
+  margin: 35px 0 0;
+  color: #f3dce5;
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 2.55vw, 39px);
+  font-style: italic;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+  animation: openingRise 900ms 700ms both;
+}
+
+.opening-subtext {
+  margin: 23px 0 0;
+  color: #cbbbc3;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  animation: openingRise 900ms 1050ms both;
+}
+
+.opening-button {
+  margin-top: 35px;
+  animation: openingRise 900ms 1350ms both;
+}
+
+.opening-screen.is-leaving {
+  pointer-events: none;
+  animation: openingExit 2.45s ease-in-out forwards;
+}
+
+.opening-screen.is-leaving .opening-content {
+  animation: openingWordsLeave 1s ease-in forwards;
+}
+
+.opening-screen.is-leaving .opening-image {
+  animation: openingImageLeave 2.45s ease-in-out forwards;
+}
+
+@keyframes imageBreathe {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
+
+@keyframes openingRise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heartShimmer {
+  0%, 100% { filter: drop-shadow(0 0 13px rgba(218, 53, 103, 0.65)); }
+  50% { filter: drop-shadow(0 0 27px rgba(235, 74, 120, 0.9)); }
+}
+
+@keyframes openingWordsLeave {
+  0% { opacity: 1; filter: blur(0); transform: translateY(0); }
+  100% { opacity: 0; filter: blur(9px); transform: translateY(-18px); }
+}
+
+@keyframes openingImageLeave {
+  from { transform: scale(1); }
+  to { transform: scale(1.14); }
+}
+
+@keyframes openingExit {
+  0%, 27% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@media (max-width: 760px) {
+  .opening-image {
+    background-image: linear-gradient(90deg, rgba(8, 8, 12, 0.83), rgba(8, 8, 12, 0.42)), linear-gradient(0deg, rgba(8, 8, 12, 0.55), transparent 70%), url("/images/cinematic-rose.jpg");
+    background-position: 70% center;
+  }
+
+  .opening-content {
+    padding-top: 65px;
+    padding-bottom: 45px;
+  }
+
+  .opening-heart {
+    margin-bottom: 18px;
+  }
+
+  .opening-heart svg {
+    width: 28px;
+  }
+
+  .opening-content h1 {
+    font-size: clamp(63px, 14vw, 89px);
+    letter-spacing: -0.058em;
+  }
+
+  .opening-quote {
+    margin-top: 31px;
+    font-size: clamp(26px, 6.9vw, 34px);
+  }
+
+  .opening-subtext {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+
+  .opening-button {
+    margin-top: 30px;
+  }
+}
